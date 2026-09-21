@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+server/node_modules/
+
+# Production build outputs
+dist/
+dist-ssr/
+*.local
+
+# Environment variables
+.env
+server/.env
+.env.production
+
+# Logs & uploaded files
+server/logs/
+server/uploads/
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

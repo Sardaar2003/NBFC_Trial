@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Decoupled Backend REST API Microservice (Node.js/Express)
+  nbfc-backend-api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: nbfc_backend_api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - JWT_SECRET=nbfc_finvanguard_secret_key_2026
+    restart: always
+
+  # Decoupled Frontend Single Page Application (React + Vite + Nginx)
+  nbfc-frontend-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nbfc_frontend_ui
+    ports:
+      - "8080:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    depends_on:
+      - nbfc-backend-api
+    restart: always
